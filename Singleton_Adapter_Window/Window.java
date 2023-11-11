@@ -1,4 +1,4 @@
-package Singleton_Adapter_Window;
+/*package Singleton_Adapter_Window;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -27,4 +27,4 @@ public class Window extends Application {
 
         primaryStage.show();
     }
-}
+}*/

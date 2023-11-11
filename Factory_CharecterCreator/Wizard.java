@@ -3,9 +3,9 @@ package Factory_CharecterCreator;
 public class Wizard extends Human {
     private int HealthPoints = 200;
     private int Mana = 150;
-    private int damage = 15;
-    private int mageDamage = 85;
-    private int mageCost = 15;
+    private final int damage = 15;
+    private final int mageDamage = 85;
+    private final int mageCost = 15;
 
     public Wizard(String name) {
         super(name);

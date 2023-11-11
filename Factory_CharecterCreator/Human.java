@@ -1,7 +1,7 @@
 package Factory_CharecterCreator;
 
 public abstract class Human {
-    private String name;
+    private final String name;
     private boolean status = true;
     public Human(String name) {
         this.name = name;

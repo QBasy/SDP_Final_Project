@@ -1,4 +1,7 @@
 import Factory_CharecterCreator.*;
+import Observer.*;
+import Strategy_AttackType.Attack;
+import Strategy_AttackType.PhysAttack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,8 @@ public class Main {
     public static void main(String[] args) {
         List<Human> allies = new ArrayList<>();
         List<Human> enemy = new ArrayList<>();
+        enemy.add(new Wizard("enemy 1"));
+        enemy.add(new Warrior("enemy 2"));
         Scanner in = new Scanner(System.in);
 
         System.out.println("How many Allies you want to create?");
@@ -17,27 +22,18 @@ public class Main {
             System.out.println("1 - Warrior\n2 - Wizard\n3 - Priest");
             allies.add(createCharacter());
         }
-        System.out.println("Which level of Enemies you want to choose?");
         while (true) {
-            for (int i = 0; i < allies.size(); i++) {
-                if (allies.get(i).getStatus().equals("Dead")) {
-                    allies.remove(i);
-                }
-            }
-            for (int i = 0; i < enemy.size(); i++) {
-                if (enemy.get(i).getStatus().equals("Dead")) {
-                    enemy.remove(i);
-                }
-            }
             if (allies.isEmpty()) {
                 System.out.println("You Lost!");
                 break;
             }
             if (enemy.isEmpty()) {
-                System.out.println("You Lost!");
+                System.out.println("You Won!");
                 System.exit(0);
             }
             System.out.println("Make your move");
+            move(allies, enemy);
+            update(allies,enemy);
         }
     }
 
@@ -46,7 +42,7 @@ public class Main {
         CharecterCreator priestCreator = new PriestCreator();
         CharecterCreator warriorCreator = new WarriorCreator();
         CharecterCreator wizardCreator = new WizardCreator();
-        CharecterCreator notWarriotCreator = new NotWarriotCreator();
+        CharecterCreator notWarriorCreator = new NotWarriotCreator();
         switch (in.nextInt()) {
             case 1:
                 System.out.println("His/Her name?");
@@ -61,7 +57,7 @@ public class Main {
                 name = in.next();
                 return priestCreator.create(name);
             default:
-                return notWarriotCreator.create("Not Warrior");
+                return notWarriorCreator.create("Not Warrior");
         }
     }
     public static void move(List<Human> allies, List<Human> enemies) {
@@ -75,25 +71,34 @@ public class Main {
                 int num;
                 switch (n) {
                     case 1:
-
+                        Attack attack = new Attack();
+                        System.out.println("Choose attack Type: 1 - Physical, 2 - Magical");
+                        switch (in.nextInt()) {
+                            case 1:
+                                attack.setAttackType(new PhysAttack());
+                                System.out.println("Which person?");
+                                for (int j = 0; j < enemies.size(); j++) {
+                                    System.out.println((j+1) + " - " + enemies.get(j).getName());
+                                }
+                                attack.attack(allies.get(i), enemies.get(in.nextInt() - 1));
+                                break;
+                        }
                         loop = false;
                         break;
                     case 2:
                         System.out.println("Which person?");
                         for (int j = 0; j < allies.size(); j++) {
-                            System.out.println(j + " - " + allies.get(j).getName());
+                            System.out.println((j+1) + " - " + allies.get(j).getName());
                         }
-                        num = in.nextInt();
-                        allies.get(i).giveHeal(allies.get(num));
+                        allies.get(i).giveHeal(allies.get(in.nextInt() - 1));
                         loop = false;
                         break;
                     case 3:
                         System.out.println("Which person?");
                         for (int j = 0; j < allies.size(); j++) {
-                            System.out.println(j + " - " + allies.get(j).getName());
+                            System.out.println((j+1) + " - " + allies.get(j).getName());
                         }
-                        num = in.nextInt();
-                        allies.get(i).giveMana(allies.get(num));
+                        allies.get(i).giveMana(allies.get(in.nextInt() - 1));
                         loop = false;
                         break;
                     case 4:
@@ -102,6 +107,13 @@ public class Main {
                         System.out.println("FATAL ERROR!!! TRY AGAIN!!!");
                 }
             }
+        }
+    }
+
+    public static void update(List<Human> allies, List<Human> enemy) {
+        Observer observer = new ObserverClass();
+        for (int i = 0; i < allies.size(); i++) {
+            observer.update(allies.get(i));
         }
     }
 }

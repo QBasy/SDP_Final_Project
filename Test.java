@@ -1,7 +1,8 @@
-package Factory_CharecterCreator;
-
+import Factory_CharecterCreator.Human;
+import Factory_CharecterCreator.Priest;
+import Factory_CharecterCreator.Warrior;
+import Factory_CharecterCreator.Wizard;
 import Strategy_AttackType.Attack;
-import Strategy_AttackType.AttackType;
 import Strategy_AttackType.MageAttack;
 import Strategy_AttackType.PhysAttack;
 

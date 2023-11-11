@@ -9,4 +9,8 @@ public class Wizard extends Human {
     private int mageDamage = 85;
     private int heal = 20;
     private int mana = 25;
+
+    public Wizard(String name) {
+        super(name);
+    }
 }

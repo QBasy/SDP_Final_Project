@@ -2,7 +2,7 @@ package Observer;
 
 import Factory_CharecterCreator.Human;
 
-public class ObserverClass implements Observer{
+public class ObserverClass implements Observer {
     @Override
     public void update(Human human) {
         System.out.println(human.getName() + " is " + human.getStatus());

@@ -11,6 +11,10 @@ public abstract class Human {
     private int mana = 10;
     private int mageCost = 5;
 
+    public Human(String name) {
+        this.name = name;
+    }
+
     public void physAttack(Human human) {
         if (human.status) {
             int HP = human.getHealthPoints();
@@ -41,11 +45,15 @@ public abstract class Human {
     }
 
     public void giveHeal(Human human) {
-        if (human.status) {
-            int HP = human.getHealthPoints();
-            human.setHealthPoints(HP + heal);
+        if (mana > 0) {
+            if (human.status) {
+                int HP = human.getHealthPoints();
+                human.setHealthPoints(HP + heal);
+            } else {
+                System.out.println(name + " is already Dead");
+            }
         } else {
-            System.out.println(name + " is already Dead");
+            System.out.println(name + "don't have enough Mana");
         }
     }
 
@@ -78,9 +86,6 @@ public abstract class Human {
     }
     public void setStatus(boolean status) {
         this.status = status;
-    }
-    public void setName (String name) {
-        this.name = name;
     }
     public String getName() {
         return name;

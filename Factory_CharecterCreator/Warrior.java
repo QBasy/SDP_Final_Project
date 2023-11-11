@@ -9,4 +9,8 @@ public class Warrior extends Human {
     private int mageDamage = 25;
     private int heal = 10;
     private int mana = 5;
+
+    public Warrior(String name) {
+        super(name);
+    }
 }

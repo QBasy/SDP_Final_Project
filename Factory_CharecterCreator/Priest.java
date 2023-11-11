@@ -9,4 +9,8 @@ public class Priest extends Human {
     private int mageDamage = 35;
     private int heal = 45;
     private int mana = 45;
+
+    public Priest(String name) {
+        super(name);
+    }
 }

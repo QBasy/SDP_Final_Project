@@ -18,10 +18,6 @@ public class Main {
             allies.add(createCharacter());
         }
         System.out.println("Which level of Enemies you want to choose?");
-        n = in.nextInt();
-        for (int i = 0; n < 6; i++) {
-
-        }
         while (true) {
             for (int i = 0; i < allies.size(); i++) {
                 if (allies.get(i).getStatus().equals("Dead")) {
@@ -35,7 +31,7 @@ public class Main {
             }
             if (allies.isEmpty()) {
                 System.out.println("You Lost!");
-                System.exit(0);
+                break;
             }
             if (enemy.isEmpty()) {
                 System.out.println("You Lost!");
@@ -66,6 +62,46 @@ public class Main {
                 return priestCreator.create(name);
             default:
                 return notWarriotCreator.create("Not Warrior");
+        }
+    }
+    public static void move(List<Human> allies, List<Human> enemies) {
+        Scanner in = new Scanner(System.in);
+        for (int i = 0; i < allies.size(); i++) {
+            System.out.println("choose Action for " + allies.get(i).getName());
+            System.out.println("1 - attack\n2 - heal\n3 - give mana\n 4 - skip action");
+            int n = in.nextInt();
+            boolean loop = true;
+            while (loop) {
+                int num;
+                switch (n) {
+                    case 1:
+
+                        loop = false;
+                        break;
+                    case 2:
+                        System.out.println("Which person?");
+                        for (int j = 0; j < allies.size(); j++) {
+                            System.out.println(j + " - " + allies.get(j).getName());
+                        }
+                        num = in.nextInt();
+                        allies.get(i).giveHeal(allies.get(num));
+                        loop = false;
+                        break;
+                    case 3:
+                        System.out.println("Which person?");
+                        for (int j = 0; j < allies.size(); j++) {
+                            System.out.println(j + " - " + allies.get(j).getName());
+                        }
+                        num = in.nextInt();
+                        allies.get(i).giveMana(allies.get(num));
+                        loop = false;
+                        break;
+                    case 4:
+                        loop = false;
+                    default:
+                        System.out.println("FATAL ERROR!!! TRY AGAIN!!!");
+                }
+            }
         }
     }
 }

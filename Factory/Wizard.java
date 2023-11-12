@@ -1,6 +1,6 @@
 package Factory;
 
-import Decorator.Character;
+import Interfaces.Character;
 
 public class Wizard extends Human {
     private String warClass = "Wizard";

@@ -1,7 +1,8 @@
 package StrategyAdapter;
 
-import Decorator.Character;
+import Interfaces.Character;
 import Factory.Wizard;
+import Interfaces.AttackType;
 
 public class WizardAttackAdapter extends Wizard implements Character {
     private AttackType attackType;

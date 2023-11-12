@@ -1,6 +1,7 @@
 package StrategyAdapter;
 
-import Decorator.Character;
+import Interfaces.Character;
+import Interfaces.AttackType;
 
 public class Attack {
     private AttackType attackType;

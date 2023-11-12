@@ -1,6 +1,7 @@
 package Decorator;
 
 import Factory.Human;
+import Interfaces.Character;
 
 public class MagicStickDecorator extends CharacterDecorator{
     private Human Decorated;

@@ -1,6 +1,7 @@
 package Decorator;
 
 import Factory.Human;
+import Interfaces.Character;
 
 public class WeaponDecorator extends CharacterDecorator {
     private Human Decorated;

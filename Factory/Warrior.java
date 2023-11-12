@@ -1,6 +1,6 @@
 package Factory;
 
-import Decorator.Character;
+import Interfaces.Character;
 
 public class Warrior extends Human {
     private String warClass = "Warrior";

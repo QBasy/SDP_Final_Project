@@ -1,8 +1,9 @@
 package StrategyAdapter;
 
-import Decorator.Character;
+import Interfaces.Character;
+import Interfaces.AttackType;
 
-public class MageAttack implements AttackType{
+public class MageAttack implements AttackType {
     public void attack(Character allie, Character enemy) {
         if (enemy.getStatus().equals("Alive")) {
             if (allie.getMana() > 0) {

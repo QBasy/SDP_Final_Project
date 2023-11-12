@@ -1,6 +1,7 @@
 package Factory;
 
-import Decorator.Character;
+import Interfaces.Character;
+import Interfaces.CharacterCreator;
 
 public class WarriorCreator implements CharacterCreator {
     @Override

@@ -1,4 +1,4 @@
-package Decorator;
+package Interfaces;
 
 public interface Character {
     int getHealthPoints();

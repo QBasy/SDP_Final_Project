@@ -1,8 +1,10 @@
 package Observer;
 
-import Decorator.Character;
-import Factory.Human;
+import Interfaces.Character;
+
+import java.util.List;
 
 public interface Observer {
-    void update(Character human);
+    void update(List<Character> allies, List<Character> enemy);
+    void checkForDead(List<Character> allies, List<Character> enemies);
 }

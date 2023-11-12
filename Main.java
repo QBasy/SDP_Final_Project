@@ -4,8 +4,8 @@ import Decorator.MagicStickDecorator;
 import Decorator.WeaponDecorator;
 import Factory.*;
 import Interfaces.CharacterCreator;
-import Observer.Observer;
-import Observer.ObserverClass;
+import ObserverSingleton.Observer;
+import ObserverSingleton.ObserverClass;
 import StrategyAdapter.*;
 
 import java.util.ArrayList;
@@ -55,7 +55,6 @@ public class Main {
             move(allies, enemy);
             enemyMove(enemy, allies);
             observer.update(allies,enemy);
-            observer.checkForDead(allies, enemy);
         }
     }
     public static void inventory(List<Character> human, int index) {

@@ -1,4 +1,4 @@
-package Observer;
+package ObserverSingleton;
 
 import Interfaces.Character;
 
@@ -31,6 +31,7 @@ public class ObserverClass implements Observer {
                 System.out.println("Mana = " + human.getMana() + "\n");
             }
         }
+        checkForDead(allies, enemy);
     }
     public void checkForDead(List<Character> allies, List<Character> enemies) {
         for (int i = 0; i < allies.size(); i++) {

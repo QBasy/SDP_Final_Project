@@ -1,7 +1,6 @@
-package Strategy;
+package StrategyAdapter;
 
 import Decorator.Character;
-import Factory.Human;
 
 public class MageAttack implements AttackType{
     public void attack(Character allie, Character enemy) {

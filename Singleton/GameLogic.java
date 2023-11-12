@@ -6,9 +6,7 @@ import Decorator.MagicStickDecorator;
 import Decorator.WeaponDecorator;
 import Factory.*;
 import Observer.*;
-import Strategy.Attack;
-import Strategy.MageAttack;
-import Strategy.PhysAttack;
+import StrategyAdapter.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -69,26 +67,48 @@ public class GameLogic {
             while (loop) {
                 switch (n) {
                     case 1:
-                        Attack attack = new Attack();
-                        System.out.println("Choose attack Type: 1 - Physical, 2 - Magical");
-                        switch (in.nextInt()) {
-                            case 1:
-                                attack.setAttackType(new PhysAttack());
+                        String warClass = allies.get(i).getWarClass();
+                        String characterName = allies.get(i).getName();
+                        switch (warClass) {
+                            case "Warrior":
+                                allies.remove(i);
+                                var warrior = new WarriorAttackAdapter(characterName);
+                                warrior.setAttackType(new PhysAttack());
+                                allies.add(i, warrior);
                                 System.out.println("Which person?");
                                 for (int j = 0; j < enemies.size(); j++) {
                                     System.out.println((j+1) + " - " + enemies.get(j).getName());
                                 }
-                                attack.attack(allies.get(i), enemies.get(in.nextInt() - 1));
+                                warrior.attack(allies.get(i), enemies.get(in.nextInt() - 1));
                                 System.out.println();
                                 break;
-                            case 2:
-                                attack.setAttackType(new MageAttack());
+                            case "Wizard":
+                                allies.remove(i);
+                                var wizard = new WizardAttackAdapter(characterName);
+                                wizard.setAttackType(new MageAttack());
+                                allies.add(i, wizard);
                                 System.out.println("Which person?");
                                 for (int j = 0; j < enemies.size(); j++) {
                                     System.out.println((j+1) + " - " + enemies.get(j).getName());
                                 }
-                                attack.attack(allies.get(i), enemies.get(in.nextInt() - 1));
+                                wizard.attack(allies.get(i), enemies.get(in.nextInt() - 1));
                                 System.out.println();
+                                break;
+                            case "Priest":
+                                System.out.println("Which person?");
+                                for (int j = 0; j < enemies.size(); j++) {
+                                    System.out.println((j+1) + " - " + enemies.get(j).getName());
+                                }
+                                String enemyName = enemies.get(in.nextInt()).getName();
+                                System.out.println("Priest tries to attack " + enemyName + ", but GOD doesn't allows that");
+                                break;
+                            case "NotWarrior":
+                                System.out.println("Which person?");
+                                for (int j = 0; j < enemies.size(); j++) {
+                                    System.out.println((j+1) + " - " + enemies.get(j).getName());
+                                }
+                                in.nextInt();
+                                System.out.println("He doesn't even tries to hit, he is not Warrior");
                                 break;
                         }
                         loop = false;

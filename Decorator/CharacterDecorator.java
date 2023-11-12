@@ -48,4 +48,7 @@ public abstract class CharacterDecorator implements Character {
     public void giveHeal(Character human) {
         decoratedCharacter.giveMana(human);
     }
+    public String getWarClass() {
+        return decoratedCharacter.getWarClass();
+    }
 }

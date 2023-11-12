@@ -1,11 +1,14 @@
-package Strategy;
+package StrategyAdapter;
 
 import Decorator.Character;
-import Factory.Human;
+import Factory.Wizard;
 
-public class Attack {
+public class WizardAttackAdapter extends Wizard implements Character {
     private AttackType attackType;
 
+    public WizardAttackAdapter(String name) {
+        super(name);
+    }
     public void setAttackType(AttackType attackType) {
         this.attackType = attackType;
     }

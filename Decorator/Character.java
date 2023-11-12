@@ -14,4 +14,5 @@ public interface Character {
     void setHealthPoints(int HP);
     void giveMana(Character human);
     void giveHeal(Character human);
+    String getWarClass();
 }

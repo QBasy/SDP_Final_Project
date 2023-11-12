@@ -1,11 +1,3 @@
-import Factory.Human;
-import Factory.Priest;
-import Factory.Warrior;
-import Factory.Wizard;
-import Strategy.Attack;
-import Strategy.MageAttack;
-import Strategy.PhysAttack;
-
 import java.util.ArrayList;
 
 public class Test {

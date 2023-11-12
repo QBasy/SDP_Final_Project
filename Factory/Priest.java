@@ -3,7 +3,7 @@ package Factory;
 import Decorator.Character;
 
 public class Priest extends Human {
-    private String name = "Priest";
+    private String warClass = "Priest";
     private boolean status = true;
     private int HealthPoints = 100;
     private int Mana = 200;
@@ -70,10 +70,10 @@ public class Priest extends Human {
                     System.out.println(human.getName() + " is already Dead");
                 }
             } else {
-                System.out.println(name + "don't have enough Mana");
+                System.out.println(getName() + "don't have enough Mana");
             }
         } else {
-            System.out.println(name + " is already Dead");
+            System.out.println(getName() + " is already Dead");
         }
     }
     public void giveMana(Character human) {
@@ -86,12 +86,16 @@ public class Priest extends Human {
                 System.out.println(human.getName() + " is already Dead");
             }
         } else {
-            System.out.println(name + " is already Dead");
+            System.out.println(getName() + " is already Dead");
         }
     }
 
     @Override
     public int getMana() {
         return Mana;
+    }
+
+    public String getWarClass() {
+        return warClass;
     }
 }

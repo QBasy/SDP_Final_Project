@@ -3,6 +3,7 @@ package Factory;
 import Decorator.Character;
 
 public class Wizard extends Human {
+    private String warClass = "Wizard";
     private int HealthPoints = 200;
     private int Mana = 150;
     private int damage = 15;
@@ -70,5 +71,9 @@ public class Wizard extends Human {
     @Override
     public int getMana() {
         return Mana;
+    }
+
+    public String getWarClass() {
+        return warClass;
     }
 }

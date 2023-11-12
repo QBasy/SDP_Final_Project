@@ -1,19 +1,17 @@
-package Factory_CharecterCreator;
+package Factory;
+
+import Decorator.Character;
 
 public class Priest extends Human {
-    private String name;
+    private String name = "Priest";
     private boolean status = true;
     private int HealthPoints = 100;
     private int Mana = 200;
     private int damage = 10;
     private int mageDamage = 35;
-    private int heal = 45;
-    private int mana = 45;
-    private int mageCost = 15;
 
     public Priest(String name) {
         super(name);
-        status = true;
     }
 
     @Override
@@ -22,8 +20,18 @@ public class Priest extends Human {
     }
 
     @Override
+    public void setMageDamage(int mana) {
+        this.mageDamage += mana;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage += damage;
+    }
+
+    @Override
     public void setMana(int mana) {
-        this.Mana = mana;
+        this.Mana += mana;
     }
 
     @Override
@@ -32,8 +40,13 @@ public class Priest extends Human {
     }
 
     @Override
+    public String getDescription() {
+        return "Priest";
+    }
+
+    @Override
     public int getMageCost() {
-        return mageCost;
+        return 15;
     }
 
     @Override
@@ -46,11 +59,12 @@ public class Priest extends Human {
         return damage;
     }
 
-    public void giveHeal(Human human) {
+    public void giveHeal(Character human) {
         if (status) {
             if (Mana > 0) {
                 if (human.getStatus().equals("Alive")) {
                     int HP = human.getHealthPoints();
+                    int heal = 45;
                     human.setHealthPoints(HP + heal);
                 } else {
                     System.out.println(human.getName() + " is already Dead");
@@ -62,10 +76,11 @@ public class Priest extends Human {
             System.out.println(name + " is already Dead");
         }
     }
-    public void giveMana(Human human) {
+    public void giveMana(Character human) {
         if (status) {
             if (human.getStatus().equals("Alive")) {
                 int Mana = human.getMana();
+                int mana = 45;
                 human.setMana(Mana + mana);
             } else {
                 System.out.println(human.getName() + " is already Dead");

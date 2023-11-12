@@ -1,5 +1,5 @@
-import Factory_CharecterCreator.*;
-import Singleton_Window.GameLogic;
+import Decorator.Character;
+import Singleton.GameLogic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ public class Main {
         GameLogic gl = GameLogic.getInstance();
         Scanner in = new Scanner(System.in);
 
-        List<Human> allies = new ArrayList<>();
-        List<Human> enemy = new ArrayList<>();
+        List<Character> allies = new ArrayList<>();
+        List<Character> enemy = new ArrayList<>();
 
         enemy.add(gl.createEnemy());
         enemy.add(gl.createEnemy());
@@ -33,6 +33,8 @@ public class Main {
             allies.add(gl.createCharacter());
         }
 
+        gl.inventory(allies, 1);
+
         while (true) {
             if (allies.isEmpty()) {
                 System.out.println("You Lost!");
@@ -44,7 +46,10 @@ public class Main {
             }
             System.out.println("Make your move");
             gl.move(allies, enemy);
+            gl.enemyMove(enemy, allies);
             gl.update(allies,enemy);
+            gl.checkForDead(allies);
+            gl.checkForDead(enemy);
         }
     }
 }

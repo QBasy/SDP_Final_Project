@@ -1,6 +1,7 @@
-package Strategy_AttackType;
+package Strategy;
 
-import Factory_CharecterCreator.Human;
+import Decorator.Character;
+import Factory.Human;
 
 public class Attack {
     private AttackType attackType;
@@ -8,7 +9,7 @@ public class Attack {
     public void setAttackType(AttackType attackType) {
         this.attackType = attackType;
     }
-    public void attack(Human allie, Human enemy) {
+    public void attack(Character allie, Character enemy) {
         attackType.attack(allie, enemy);
     }
 }

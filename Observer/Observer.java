@@ -1,7 +1,8 @@
 package Observer;
 
-import Factory_CharecterCreator.Human;
+import Decorator.Character;
+import Factory.Human;
 
 public interface Observer {
-    void update(Human human);
+    void update(Character human);
 }

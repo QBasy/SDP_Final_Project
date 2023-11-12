@@ -1,11 +1,12 @@
-package Factory_CharecterCreator;
+package Factory;
+
+import Decorator.Character;
 
 public class Wizard extends Human {
     private int HealthPoints = 200;
     private int Mana = 150;
-    private final int damage = 15;
-    private final int mageDamage = 85;
-    private final int mageCost = 15;
+    private int damage = 15;
+    private int mageDamage = 85;
 
     public Wizard(String name) {
         super(name);
@@ -17,8 +18,18 @@ public class Wizard extends Human {
     }
 
     @Override
+    public void setMageDamage(int mana) {
+        this.mageDamage += mana;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage += damage;
+    }
+
+    @Override
     public void setMana(int mana) {
-        this.Mana = mana;
+        this.Mana += mana;
     }
 
     @Override
@@ -27,8 +38,13 @@ public class Wizard extends Human {
     }
 
     @Override
+    public String getDescription() {
+        return "Wizard";
+    }
+
+    @Override
     public int getMageCost() {
-        return mageCost;
+        return 15;
     }
 
     @Override
@@ -42,13 +58,13 @@ public class Wizard extends Human {
     }
 
     @Override
-    public void giveHeal(Human warrior) {
-        System.out.println("Heal can only Priest, so you just lost your action)))");
+    public void giveHeal(Character warrior) {
+        setHealthPoints(getHealthPoints());
     }
 
     @Override
-    public void giveMana(Human human) {
-        System.out.println("Only a Priest can restore mana, so you just lost your action)))");
+    public void giveMana(Character human) {
+        setMana(0);
     }
 
     @Override

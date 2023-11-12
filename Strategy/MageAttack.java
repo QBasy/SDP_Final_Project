@@ -1,9 +1,10 @@
-package Strategy_AttackType;
+package Strategy;
 
-import Factory_CharecterCreator.Human;
+import Decorator.Character;
+import Factory.Human;
 
 public class MageAttack implements AttackType{
-    public void attack(Human allie, Human enemy) {
+    public void attack(Character allie, Character enemy) {
         if (enemy.getStatus().equals("Alive")) {
             if (allie.getMana() > 0) {
                 allie.setMana(allie.getMana() - allie.getMageCost());

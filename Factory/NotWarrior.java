@@ -1,4 +1,6 @@
-package Factory_CharecterCreator;
+package Factory;
+
+import Decorator.Character;
 
 public class NotWarrior extends Human{
     private int HealthPoints;
@@ -18,6 +20,16 @@ public class NotWarrior extends Human{
     }
 
     @Override
+    public void setMageDamage(int mana) {
+        this.mageDamage = 0;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = 0;
+    }
+
+    @Override
     public void setMana(int mana) {
         this.Mana = mana;
     }
@@ -25,6 +37,11 @@ public class NotWarrior extends Human{
     @Override
     public void setHealthPoints(int HealthPoints) {
         this.HealthPoints = HealthPoints;
+    }
+
+    @Override
+    public String getDescription() {
+        return ("He is not Warrior and... that's off)))");
     }
 
     @Override
@@ -43,12 +60,12 @@ public class NotWarrior extends Human{
     }
 
     @Override
-    public void giveHeal(Human warrior) {
+    public void giveHeal(Character warrior) {
         System.out.println("He can't even attack, what are you thinking?");
     }
 
     @Override
-    public void giveMana(Human human) {
+    public void giveMana(Character human) {
         System.out.println("He can't even attack, what are you thinking?");
     }
 

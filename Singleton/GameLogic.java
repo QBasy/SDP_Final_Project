@@ -1,10 +1,14 @@
-package Singleton_Window;
+package Singleton;
 
-import Factory_CharecterCreator.*;
+import Decorator.ArmorDecorator;
+import Decorator.Character;
+import Decorator.MagicStickDecorator;
+import Decorator.WeaponDecorator;
+import Factory.*;
 import Observer.*;
-import Strategy_AttackType.Attack;
-import Strategy_AttackType.MageAttack;
-import Strategy_AttackType.PhysAttack;
+import Strategy.Attack;
+import Strategy.MageAttack;
+import Strategy.PhysAttack;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,26 +23,26 @@ public class GameLogic {
             return instance;
         }
     }
-    public void update(List<Human> allies, List<Human> enemy) {
+    public void update(List<Character> allies, List<Character> enemy) {
         Observer observer = new ObserverClass();
-        for (Human ally : allies) {
+        for (Character ally : allies) {
             observer.update(ally);
         }
-        for (Human human : enemy) {
+        for (Character human : enemy) {
             observer.update(human);
         }
     }
-    public Human createEnemy() {
-        CharecterCreator enemyCreator = new WarriorCreator();
+    public Character createEnemy() {
+        CharacterCreator enemyCreator = new WarriorCreator();
         return enemyCreator.create("Enemy");
     }
-    public Human createCharacter() {
+    public Character createCharacter() {
         Scanner in = new Scanner(System.in);
 
-        CharecterCreator priestCreator = new PriestCreator();
-        CharecterCreator warriorCreator = new WarriorCreator();
-        CharecterCreator wizardCreator = new WizardCreator();
-        CharecterCreator notWarriorCreator = new NotWarriotCreator();
+        CharacterCreator priestCreator = new PriestCreator();
+        CharacterCreator warriorCreator = new WarriorCreator();
+        CharacterCreator wizardCreator = new WizardCreator();
+        CharacterCreator notWarriorCreator = new NotWarriorCreator();
 
         int choice = in.nextInt();
         System.out.println("His/Her name?");
@@ -52,9 +56,12 @@ public class GameLogic {
             default -> notWarriorCreator.create("Not Warrior");
         };
     }
-    public void move(List<Human> allies, List<Human> enemies) {
+    public void move(List<Character> allies, List<Character> enemies) {
         Scanner in = new Scanner(System.in);
         for (int i = 0; i < allies.size(); i++) {
+            if (allies.get(i).getStatus().equals("Dead")) {
+                i++;
+            }
             System.out.println("choose Action for " + allies.get(i).getName());
             System.out.println("1 - attack\n2 - heal\n3 - give mana\n 4 - skip action");
             int n = in.nextInt();
@@ -112,6 +119,78 @@ public class GameLogic {
                         System.out.println();
                         break;
                 }
+            }
+        }
+    }
+
+    public void enemyMove(List<Character> enemy, List<Character> allies) {
+        System.out.println("Now wait for Enemy move");
+        for (int i = 0; i < enemy.size(); i++) {
+            int gettingPerson = (int) ((Math.random() * (allies.size() - 1)));
+            int move = (int) ((Math.random() * (5 - 1)));
+            switch (move) {
+                case 1:
+                    Attack physAttack = new Attack();
+                    physAttack.setAttackType(new PhysAttack());
+                    physAttack.attack(enemy.get(i), allies.get(gettingPerson));
+                    System.out.println();
+                    break;
+                case 2:
+                    Attack magicAttack = new Attack();
+                    magicAttack.setAttackType(new MageAttack());
+                    magicAttack.attack(enemy.get(i), allies.get(gettingPerson));
+                    System.out.println();
+                    break;
+                case 3:
+                    enemy.get(i).giveHeal(enemy.get(gettingPerson));
+                    System.out.println();
+                    break;
+                case 4:
+                    enemy.get(i).giveMana(enemy.get(gettingPerson));
+                    System.out.println();
+                    break;
+            }
+        }
+    }
+    public void inventory(List<Character> human, int index) {
+        System.out.println("You can spend your own Mana Points to get something from inventory, you can get something 1");
+        System.out.println("BUT IT WILL BE SOMETHING RANDOMLY AND ONLY FOR YOUR FIRST CHARACTER");
+        System.out.println("1 - Yes, 2 - No");
+        Scanner in = new Scanner(System.in);
+        switch (in.nextInt()) {
+            case 1:
+                System.out.println("Ok");
+                break;
+            case 2:
+                System.out.println("Ok");
+                return;
+            default:
+                return;
+        }
+        int num = (int) ((Math.random() * (3 - 1)) + 1);
+
+        switch (num) {
+            case 1:
+                Character Armored = new ArmorDecorator(human.get(index));
+                human.remove(index);
+                human.add(index, Armored);
+                break;
+            case 2:
+                Character MagicStick = new MagicStickDecorator(human.get(index));
+                human.remove(index);
+                human.add(index, MagicStick);
+                break;
+            case 3:
+                Character Weapon = new WeaponDecorator(human.get(index));
+                human.remove(index);
+                human.add(index, Weapon);
+                break;
+        }
+    }
+    public void checkForDead(List<Character> human) {
+        for (int i = 0; i < human.size(); i++) {
+            if (human.get(i).getStatus().equals("Dead")) {
+                human.remove(i);
             }
         }
     }

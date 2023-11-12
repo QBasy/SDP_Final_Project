@@ -1,10 +1,11 @@
-package Strategy_AttackType;
+package Strategy;
 
-import Factory_CharecterCreator.Human;
+import Decorator.Character;
+import Factory.Human;
 
 public class PhysAttack implements AttackType {
     @Override
-    public void attack(Human allie, Human enemy) {
+    public void attack(Character allie, Character enemy) {
         if (enemy.getStatus().equals("Alive")) {
             int HP = enemy.getHealthPoints();
             enemy.setHealthPoints(HP - allie.getDamage());

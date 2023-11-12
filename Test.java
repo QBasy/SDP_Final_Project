@@ -1,26 +1,22 @@
-import Factory_CharecterCreator.Human;
-import Factory_CharecterCreator.Priest;
-import Factory_CharecterCreator.Warrior;
-import Factory_CharecterCreator.Wizard;
-import Strategy_AttackType.Attack;
-import Strategy_AttackType.MageAttack;
-import Strategy_AttackType.PhysAttack;
+import Factory.Human;
+import Factory.Priest;
+import Factory.Warrior;
+import Factory.Wizard;
+import Strategy.Attack;
+import Strategy.MageAttack;
+import Strategy.PhysAttack;
+
+import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        Human priest = new Priest("priest one");
-        Human warrior = new Warrior("warrior one");
-        Human wizard = new Wizard("wizard one");
-
-        Attack Wizard_attack = new Attack();
-        Attack Warrior_attack = new Attack();
-        Wizard_attack.setAttackType(new MageAttack());
-        Warrior_attack.setAttackType(new PhysAttack());
-        System.out.println(warrior.getHealthPoints());
-        System.out.println(wizard.getHealthPoints());
-        Wizard_attack.attack(wizard, warrior);
-        Warrior_attack.attack(warrior, wizard);
-        priest.giveHeal(warrior);
-
+        ArrayList list = new ArrayList();
+        list.add(0, 1);
+        list.add(0,2);
+        System.out.println(list.get(1));
+        list.add(1,2);
+        list.remove(0);
+        list.add(0, 3);
+        System.out.println(list.get(0) + " " + list.get(1));
     }
 }

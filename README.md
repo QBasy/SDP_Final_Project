@@ -18,7 +18,11 @@ public class ObserverClass implements Observer {
             return instance;
         }
     }
-    /*Observer*/
+
+    /*
+    Observer
+            */
+
 }
 ```
 
@@ -28,7 +32,11 @@ public class ObserverClass implements Observer {
 
 ```java
 public class ObserverClass implements Observer {
-    /*Singleton*/
+
+    /*
+    Singleton
+            */
+
     @Override
     public void update(List<Character> allies, List<Character> enemy) {
         for (Character human : allies) {

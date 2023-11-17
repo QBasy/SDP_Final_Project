@@ -19,9 +19,7 @@ public class ObserverClass implements Observer {
         }
     }
 
-    /*
-    Observer
-            */
+    /*Observer*/
 
 }
 ```
@@ -33,9 +31,7 @@ public class ObserverClass implements Observer {
 ```java
 public class ObserverClass implements Observer {
 
-    /*
-    Singleton
-            */
+    /*Singleton*/
 
     @Override
     public void update(List<Character> allies, List<Character> enemy) {
@@ -77,9 +73,351 @@ public interface Observer {
 
 # Factory
 
+## Product
+
 ```java
+public interface Character {
+    int getHealthPoints();
+    int getDamage();
+    int getMageCost();
+    int getMageDamage();
+    int getMana();
+    String getStatus();
+    String getName();
+    String getDescription();
+    void setStatus(boolean status);
+    void setMana(int mana);
+    void setHealthPoints(int HP);
+    void giveMana(Character human);
+    void giveHeal(Character human);
+    String getWarClass();
+}
 ```
 
+```java
+public abstract class Human implements Character {
+    private final String name;
+    private boolean status = true;
+    public Human(String name) {
+        this.name = name;
+    }
+    public String getStatus() {
+        if (!status) {
+            return "Dead";
+        }
+        return "Alive";
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    public String getName() {
+        return name;
+    }
+    public abstract int getMageCost();
+    public abstract int getMageDamage();
+    public abstract int getDamage();
+    public abstract void giveHeal(Character warrior);
+    public abstract void giveMana(Character human);
+    public abstract int getMana();
+    public abstract int getHealthPoints();
+    public abstract void setMageDamage(int mana);
+    public abstract void setDamage(int damage);
+    public abstract void setMana(int mana);
+    public abstract void setHealthPoints(int HealthPoints);
+    public abstract String getDescription();
+}
+```
+
+## ConcreteProduct
+
+```java
+public class Priest extends Human {
+    private String warClass = "Priest";
+    private boolean status = true;
+    private int HealthPoints = 100;
+    private int Mana = 200;
+    private int damage = 10;
+    private int mageDamage = 35;
+
+    public Priest(String name) {
+        super(name);
+    }
+
+    @Override
+    public int getHealthPoints() {
+        return HealthPoints;
+    }
+
+    @Override
+    public void setMageDamage(int mana) {
+        this.mageDamage += mana;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage += damage;
+    }
+
+    @Override
+    public void setMana(int mana) {
+        this.Mana += mana;
+    }
+
+    @Override
+    public void setHealthPoints(int HealthPoints) {
+        this.HealthPoints = HealthPoints;
+    }
+
+    @Override
+    public String getDescription() {
+        return "Priest";
+    }
+
+    @Override
+    public int getMageCost() {
+        return 15;
+    }
+
+    @Override
+    public int getMageDamage() {
+        return mageDamage;
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    public void giveHeal(Character human) {
+        if (status) {
+            if (Mana > 0) {
+                if (human.getStatus().equals("Alive")) {
+                    int HP = human.getHealthPoints();
+                    int heal = 45;
+                    human.setHealthPoints(HP + heal);
+                } else {
+                    System.out.println(human.getName() + " is already Dead");
+                }
+            } else {
+                System.out.println(getName() + "don't have enough Mana");
+            }
+        } else {
+            System.out.println(getName() + " is already Dead");
+        }
+    }
+    public void giveMana(Character human) {
+        if (status) {
+            if (human.getStatus().equals("Alive")) {
+                int Mana = human.getMana();
+                int mana = 45;
+                human.setMana(Mana + mana);
+            } else {
+                System.out.println(human.getName() + " is already Dead");
+            }
+        } else {
+            System.out.println(getName() + " is already Dead");
+        }
+    }
+
+    @Override
+    public int getMana() {
+        return Mana;
+    }
+
+    public String getWarClass() {
+        return warClass;
+    }
+}
+```
+```java
+public class Warrior extends Human {
+    private String warClass = "Warrior";
+    private int HealthPoints = 300;
+    private int Mana = 50;
+    private int damage = 75;
+    private int mageDamage = 5;
+
+    public Warrior(String name) {
+        super(name);
+    }
+
+    @Override
+    public int getHealthPoints() {
+        return HealthPoints;
+    }
+
+    @Override
+    public void setMageDamage(int damage) {
+        this.mageDamage += damage;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage += damage;
+    }
+
+    @Override
+    public void setMana(int mana) {
+        this.Mana = mana;
+    }
+
+    @Override
+    public void setHealthPoints(int HealthPoints) {
+        this.HealthPoints = HealthPoints;
+    }
+
+    @Override
+    public String getDescription() {
+        return "Warrior" + getName() + "got an equipment: Sword ";
+    }
+
+    @Override
+    public int getMageCost() {
+        return 10;
+    }
+
+    @Override
+    public int getMageDamage() {
+        return mageDamage;
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    @Override
+    public void giveHeal(Character warrior) {
+        int heal = 0;
+        warrior.setHealthPoints(warrior.getHealthPoints() + heal);
+    }
+
+    @Override
+    public void giveMana(Character human) {
+        System.out.println("Warrior can't restore mana, so you just lost your action");
+    }
+
+    @Override
+    public int getMana() {
+        return Mana;
+    }
+
+    public String getWarClass() {
+        return warClass;
+    }
+}
+```
+
+```java
+public class Wizard extends Human {
+    private String warClass = "Wizard";
+    private int HealthPoints = 200;
+    private int Mana = 150;
+    private int damage = 15;
+    private int mageDamage = 85;
+
+    public Wizard(String name) {
+        super(name);
+    }
+
+    @Override
+    public int getHealthPoints() {
+        return HealthPoints;
+    }
+
+    @Override
+    public void setMageDamage(int mana) {
+        this.mageDamage += mana;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage += damage;
+    }
+
+    @Override
+    public void setMana(int mana) {
+        this.Mana += mana;
+    }
+
+    @Override
+    public void setHealthPoints(int HealthPoints) {
+        this.HealthPoints = HealthPoints;
+    }
+
+    @Override
+    public String getDescription() {
+        return "Wizard";
+    }
+
+    @Override
+    public int getMageCost() {
+        return 15;
+    }
+
+    @Override
+    public int getMageDamage() {
+        return mageDamage;
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    @Override
+    public void giveHeal(Character warrior) {
+        setHealthPoints(getHealthPoints());
+    }
+
+    @Override
+    public void giveMana(Character human) {
+        setMana(0);
+    }
+
+    @Override
+    public int getMana() {
+        return Mana;
+    }
+
+    public String getWarClass() {
+        return warClass;
+    }
+}
+```
+
+## Creator
+
+```java
+public interface CharacterCreator {
+    Character create(String name);
+}
+```
+## ConcreteCreators
+```java
+public class PriestCreator implements CharacterCreator {
+    @Override
+    public Character create(String name) {
+        return new Priest(name);
+    }
+}
+```
+```java
+public class WarriorCreator implements CharacterCreator {
+    @Override
+    public Character create(String name) {
+        return new Warrior(name);
+    }
+}
+```
+```java
+public class WizardCreator implements CharacterCreator {
+    @Override
+    public Character create(String name) {
+        return new Wizard(name);
+    }
+}
+```
 ---
 
 # Decorator

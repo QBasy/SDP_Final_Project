@@ -531,6 +531,64 @@ public class WeaponDecorator extends CharacterDecorator {
 # Strategy
 
 ```java
+public interface AttackType {
+    void attack(Character allie, Character enemy);
+}
+```
+
+```java
+public class Attack {
+    private AttackType attackType;
+
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
+    }
+    public void attack(Character allie, Character enemy) {
+        attackType.attack(allie, enemy);
+    }
+}
+```
+
+```java
+public class MageAttack implements AttackType {
+    public void attack(Character allie, Character enemy) {
+        if (enemy.getStatus().equals("Alive")) {
+            if (allie.getMana() > 0) {
+                allie.setMana(allie.getMana() - allie.getMageCost());
+                int HP = enemy.getHealthPoints();
+                enemy.setHealthPoints(HP - allie.getMageDamage());
+                if (enemy.getHealthPoints() <= 0) {
+                    enemy.setStatus(false);
+                }
+                System.out.println(allie.getName() + " attacking " + enemy.getName());
+                System.out.println(enemy.getName() + " lose " + (allie.getMageDamage()) + " and have " + enemy.getHealthPoints() + " HP\n");
+            } else {
+                System.out.println(allie.getName() + " needs to get Mana");
+            }
+        } else {
+            System.out.println(allie.getName() + " is ALREADY Dead!!!");
+        }
+    }
+}
+```
+
+```java
+public class PhysAttack implements AttackType {
+    @Override
+    public void attack(Character allie, Character enemy) {
+        if (enemy.getStatus().equals("Alive")) {
+            int HP = enemy.getHealthPoints();
+            enemy.setHealthPoints(HP - allie.getDamage());
+            if (enemy.getHealthPoints() <= 0) {
+                enemy.setStatus(false);
+            }
+            System.out.println(allie.getName() + " attacking " + enemy.getName());
+            System.out.println(enemy.getName() + " lose " + (allie.getDamage()) + " and have " + enemy.getHealthPoints() + " HP\n");
+        } else {
+            System.out.println(enemy.getName() + " is ALREADY Dead!!!");
+        }
+    }
+}
 ```
 
 ---
@@ -538,14 +596,53 @@ public class WeaponDecorator extends CharacterDecorator {
 # Adapter
 
 ```java
+public class PriestAttackAdapter extends Priest implements Character {
+    private AttackType attackType;
+
+    public PriestAttackAdapter(String name) {
+        super(name);
+    }
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
+    }
+    public void attack(Character allie, Character enemy) {
+        attackType.attack(allie, enemy);
+    }
+}
 ```
 
 ---
 
 ```java
+public class WarriorAttackAdapter extends Warrior implements Character {
+    private AttackType attackType;
+
+    public WarriorAttackAdapter(String name) {
+        super(name);
+    }
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
+    }
+    public void attack(Character allie, Character enemy) {
+        attackType.attack(allie, enemy);
+    }
+}
 ```
 
 ```java
+public class WizardAttackAdapter extends Wizard implements Character {
+    private AttackType attackType;
+
+    public WizardAttackAdapter(String name) {
+        super(name);
+    }
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
+    }
+    public void attack(Character allie, Character enemy) {
+        attackType.attack(allie, enemy);
+    }
+}
 ```
 
 ```java

@@ -423,8 +423,109 @@ public class WizardCreator implements CharacterCreator {
 # Decorator
 
 ```java
+public abstract class CharacterDecorator implements Character {
+    private Character decoratedCharacter;
+
+    public CharacterDecorator(Character decoratedCharacter) {
+        this.decoratedCharacter = decoratedCharacter;
+    }
+
+    public String getDescription() {
+         return decoratedCharacter.getDescription();
+    }
+    public int getHealthPoints() {
+        return decoratedCharacter.getHealthPoints();
+    }
+    public int getDamage() {
+        return decoratedCharacter.getDamage();
+    }
+    public int getMageCost() {
+        return decoratedCharacter.getMageCost();
+    }
+    public int getMageDamage() {
+        return decoratedCharacter.getMageDamage();
+    }
+    public int getMana() {
+        return decoratedCharacter.getMana();
+    }
+    public String getStatus() {
+        return decoratedCharacter.getStatus();
+    }
+    public String getName() {
+        return decoratedCharacter.getName();
+    }
+    public void setMana(int mana) {
+        decoratedCharacter.setMana(mana);
+    }
+    public void setHealthPoints(int HP) {
+        decoratedCharacter.setHealthPoints(HP);
+    }
+    public void setStatus(boolean status) {
+        decoratedCharacter.setStatus(status);
+    }
+    public void giveMana(Character human) {
+        decoratedCharacter.giveMana(human);
+    }
+    public void giveHeal(Character human) {
+        decoratedCharacter.giveMana(human);
+    }
+    public String getWarClass() {
+        return decoratedCharacter.getWarClass();
+    }
+}
 ```
 
+```java
+public class ArmorDecorator extends CharacterDecorator {
+    private Human Decorated;
+    public ArmorDecorator(Character decoratedCharacter) {
+        super(decoratedCharacter);
+    }
+    public void setHealthPoints(Human Decorated) {
+        Decorated.setHealthPoints(Decorated.getHealthPoints() + 35);
+    }
+
+    public String getDescription(Human Decorated) {
+        return super.getDescription() + ",Armor ";
+    }
+}
+```
+
+```java
+public class MagicStickDecorator extends CharacterDecorator{
+    private Human Decorated;
+    public MagicStickDecorator(Character decoratedCharacter) {
+        super(decoratedCharacter);
+    }
+    public int getMageDamage(Human Decorated) {
+        Decorated.setMageDamage(15);
+        return super.getMageDamage() + 15;
+    }
+
+    public String getDescription(Human Decorated) {
+        return super.getDescription() + ",Magic Stick ";
+    }
+}
+```
+
+```java
+public class WeaponDecorator extends CharacterDecorator {
+    private Human Decorated;
+
+    public WeaponDecorator(Character decoratedCharacter) {
+        super(decoratedCharacter);
+    }
+
+    public int getDamage(Human Decorated) {
+        Decorated.setDamage(20);
+        return super.getDamage() + 20;
+    }
+
+    public String getDescription(Human Decorated) {
+        return super.getDescription() + ",Katana+ ";
+    }
+}
+```
 ---
 
 # Strategy

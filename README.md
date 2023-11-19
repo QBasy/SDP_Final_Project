@@ -1019,4 +1019,7 @@ public class WizardAttackAdapter extends Wizard implements Character {
     }
 }
 ```
+---
+
+In conclusion, our RPG game project represents a fusion of theoretical knowledge and practical application of game development and Software Design Patterns. By incorporating diverse character classes by using Factory Pattern, an armor and weapons system by using Decorator Pattern, two different damage types by using Strategy and Adapter Patterns, leveraging Software Design Patterns like Singleton, Observer, we aimed to create an engaging gaming experience. This meticulous integration of design patterns lays a foundation for scalability and maintainability. Beyond the game itself, this project serves as a platform for personal and professional growth, fostering teamwork, problem-solving, and honing our skills in game development. We look forward to the exciting journey ahead as we bring our theoretical understanding and sophisticated design principles into the dynamic realm of game creation.
 

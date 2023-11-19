@@ -375,6 +375,8 @@ public interface Observer {
 
 # Factory
 
+<img src="img/Factory.drawio.png">
+
 ## Product
 
 ```java
@@ -724,6 +726,8 @@ public class WizardCreator implements CharacterCreator {
 
 # Decorator
 
+<img src="img/Декоратор.drawio.png">
+
 ```java
 public abstract class CharacterDecorator implements Character {
     private Character decoratedCharacter;
@@ -832,6 +836,8 @@ public class WeaponDecorator extends CharacterDecorator {
 
 # Strategy
 
+<img src="img/StrategyAdapter.drawio.png">
+
 ```java
 public interface AttackType {
     void attack(Character allie, Character enemy);
@@ -895,6 +901,7 @@ public class PhysAttack implements AttackType {
 
 ---
 
+<img src="img/StrategyAdapter.drawio.png">
 # Adapter
 
 ```java

@@ -13,6 +13,6 @@ public class ArmorDecorator extends CharacterDecorator {
     }
 
     public String getDescription(Human Decorated) {
-        return super.getDescription() + ",Armor ";
+        return super.getDescription() + ", Armor";
     }
 }

@@ -31,9 +31,9 @@ public class ObserverClass implements Observer {
                 System.out.println("Mana = " + human.getMana() + "\n");
             }
         }
-        checkForDead(allies, enemy);
+        removeDead(allies, enemy);
     }
-    public void checkForDead(List<Character> allies, List<Character> enemies) {
+    public void removeDead(List<Character> allies, List<Character> enemies) {
         for (int i = 0; i < allies.size(); i++) {
             if (allies.get(i).getStatus().equals("Dead")) {
                 allies.remove(i);

@@ -16,6 +16,6 @@ public class WeaponDecorator extends CharacterDecorator {
     }
 
     public String getDescription(Human Decorated) {
-        return super.getDescription() + ",Katana+ ";
+        return super.getDescription() + ", Katana";
     }
 }

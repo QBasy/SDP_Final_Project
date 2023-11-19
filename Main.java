@@ -39,8 +39,18 @@ public class Main {
             System.out.println("1 - Warrior\n2 - Wizard\n3 - Priest");
             allies.add(createCharacter());
         }
-
-        inventory(allies, 1);
+        System.out.println("You can spend your own Mana Points to get something from inventory, you can get something 1");
+        System.out.println("1 - Yes\n (any other number) - No");
+        if (in.nextInt() == 1) {
+            System.out.println("Ok");
+            System.out.println("For who?");
+            for (int i = 0; i < allies.size(); i++) {
+                System.out.print((i + 1) + " - " + allies.get(i).getName());
+            }
+            inventory(allies, (in.nextInt() - 1));
+        } else {
+            System.out.println("Ok");
+        }
 
         while (true) {
             if (allies.isEmpty()) {
@@ -58,23 +68,12 @@ public class Main {
         }
     }
     public static void inventory(List<Character> human, int index) {
-        System.out.println("You can spend your own Mana Points to get something from inventory, you can get something 1");
-        System.out.println("BUT IT WILL BE SOMETHING RANDOMLY AND ONLY FOR YOUR FIRST CHARACTER");
-        System.out.println("1 - Yes, 2 - No");
         Scanner in = new Scanner(System.in);
-        switch (in.nextInt()) {
-            case 1:
-                System.out.println("Ok");
-                break;
-            case 2:
-                System.out.println("Ok");
-                return;
-            default:
-                return;
-        }
-        int num = (int) ((Math.random() * (3 - 1)) + 1);
 
-        switch (num) {
+        System.out.println("Which One?");
+        System.out.println("1 - Armor, 2 - Magic Wand, 3 - Katana");
+
+        switch (in.nextInt()) {
             case 1:
                 Character Armored = new ArmorDecorator(human.get(index));
                 human.remove(index);
@@ -89,6 +88,9 @@ public class Main {
                 Character Weapon = new WeaponDecorator(human.get(index));
                 human.remove(index);
                 human.add(index, Weapon);
+                break;
+            default:
+                System.out.println("You chose nothing(((");
                 break;
         }
     }

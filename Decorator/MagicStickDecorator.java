@@ -14,6 +14,6 @@ public class MagicStickDecorator extends CharacterDecorator{
     }
 
     public String getDescription(Human Decorated) {
-        return super.getDescription() + ",Magic Stick ";
+        return super.getDescription() + ", Magic Stick";
     }
 }

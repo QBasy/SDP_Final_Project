@@ -7,7 +7,7 @@
 ---
 
 
-**Project Overview:**   
+*Project Overview:*   
  
 **1) Our project is a representative of RPG game with 3 in-game classes, amount of which can be extended in the future. Characters can have armor and weapons. Attacks can deal two types of damage: physical and magic.**   
  

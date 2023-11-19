@@ -9,19 +9,19 @@
 
 **Project Overview:**   
  
-1) Our project is a representative of RPG game with 3 in-game classes, amount of which can be extended in the future. Characters can have armor and weapons. Attacks can deal two types of damage: physical and magic.   
+**1) Our project is a representative of RPG game with 3 in-game classes, amount of which can be extended in the future. Characters can have armor and weapons. Attacks can deal two types of damage: physical and magic.**   
  
-2) Idea behind the project is to try to implement studied material into things we like – games. Gaining some experience in this field wouldn’t be a bad thing for us.   
+**2) Idea behind the project is to try to implement studied material into things we like – games. Gaining some experience in this field wouldn’t be a bad thing for us.**   
  
-3) The purpose of our project is to create an engaging RPG game that not only can be entertaiable, but also would serve as a practical application of the theoretical knowledge we've acquired during studying.  We aim to develop a project that showcases our skills in game design, programming, and creative thinking.   
+**3) The purpose of our project is to create an engaging RPG game that not only can be entertaiable, but also would serve as a practical application of the theoretical knowledge we've acquired during studying.  We aim to develop a project that showcases our skills in game design, programming, and creative thinking.**   
  
-4) Game Mechanics Implementation:   
+**4) Game Mechanics Implementation:**   
  
-One of our primary objectives is to successfully implement various game mechanics, including character classes, armor, weapons, and a dual-damage system (physical and magic).  
+**One of our primary objectives is to successfully implement various game mechanics, including character classes, armor, weapons, and a dual-damage system (physical and magic).**  
   
 **Learning and Skill Development:**   
  
-Beyond the immediate goal of creating a game, we see this project as an opportunity for personal and professional growth. We aim to enhance our skills in teamwork, problem-solving, and game development, ultimately contributing to our overall academic development.**
+**Beyond the immediate goal of creating a game, we see this project as an opportunity for personal and professional growth. We aim to enhance our skills in teamwork, problem-solving, and game development, ultimately contributing to our overall academic development.**
 
 ---
 
@@ -1020,7 +1020,7 @@ public class WizardAttackAdapter extends Wizard implements Character {
 ```
 ---
 
-** In conclusion, our RPG game project represents a fusion of theoretical knowledge and practical application of game development and Software Design Patterns. By incorporating diverse character classes by using Factory Pattern, an armor and weapons system by using Decorator Pattern, two different damage types by using Strategy and Adapter Patterns, leveraging Software Design Patterns like Singleton, Observer, we aimed to create an engaging gaming experience. This meticulous integration of design patterns lays a foundation for scalability and maintainability. Beyond the game itself, this project serves as a platform for personal and professional growth, fostering teamwork, problem-solving, and honing our skills in game development. We look forward to the exciting journey ahead as we bring our theoretical understanding and sophisticated design principles into the dynamic realm of game creation. **
+**In conclusion, our RPG game project represents a fusion of theoretical knowledge and practical application of game development and Software Design Patterns. By incorporating diverse character classes by using Factory Pattern, an armor and weapons system by using Decorator Pattern, two different damage types by using Strategy and Adapter Patterns, leveraging Software Design Patterns like Singleton, Observer, we aimed to create an engaging gaming experience. This meticulous integration of design patterns lays a foundation for scalability and maintainability. Beyond the game itself, this project serves as a platform for personal and professional growth, fostering teamwork, problem-solving, and honing our skills in game development. We look forward to the exciting journey ahead as we bring our theoretical understanding and sophisticated design principles into the dynamic realm of game creation.**
 
 ---
 

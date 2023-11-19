@@ -4,7 +4,12 @@
 
 # From SE-2215
 
+
+
 ---
+
+
+
 # Main
 
 ## main(String[] args)
@@ -319,7 +324,11 @@ public class ObserverClass implements Observer {
 }
 ```
 
+
+
 ---
+
+
 
 # Observer
 
@@ -371,6 +380,11 @@ public interface Observer {
     void update(List<Character> allies, List<Character> enemy);
 }
 ```
+
+
+
+---
+
 
 
 # Factory
@@ -720,7 +734,12 @@ public class WizardCreator implements CharacterCreator {
     }
 }
 ```
+
+
+
 ---
+
+
 
 # Decorator
 
@@ -830,7 +849,12 @@ public class WeaponDecorator extends CharacterDecorator {
     }
 }
 ```
+
+
+
 ---
+
+
 
 # Strategy
 
@@ -908,7 +932,11 @@ public class PhysAttack implements AttackType {
 }
 ```
 
+
+
 ---
+
+
 
 # Adapter
 

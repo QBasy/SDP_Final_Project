@@ -4,7 +4,24 @@
 
 # Sayat Adilkhanov & Alikhan Dochshanov
 
+---
 
+
+Project Overview:   
+ 
+1) Our project is a representative of RPG game with various in-game classes, amount of which can be extended in the future. Characters can have armor and weapons. Attacks can deal two types of damage: physical and magic.   
+ 
+2) Idea behind the project is to try to implement studied material into things we like – games. Gaining some experience in this field wouldn’t be a bad thing for us.   
+ 
+3) The purpose of our project is to create an engaging RPG game that not only can be entertaiable, but also would serve as a practical application of the theoretical knowledge we've acquired during studying.  We aim to develop a project that showcases our skills in game design, programming, and creative thinking.   
+ 
+4) Game Mechanics Implementation:   
+ 
+One of our primary objectives is to successfully implement various game mechanics, including character classes, armor, weapons, and a dual-damage system (physical and magic).  
+  
+Learning and Skill Development:   
+ 
+Beyond the immediate goal of creating a game, we see this project as an opportunity for personal and professional growth. We aim to enhance our skills in teamwork, problem-solving, and game development, ultimately contributing to our overall academic development.
 
 
 ---

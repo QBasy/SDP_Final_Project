@@ -51,7 +51,7 @@ public class Main {
             System.out.println("1 - Warrior\n2 - Wizard\n3 - Priest");
             allies.add(createCharacter());
         }
-8
+
         System.out.println("You can spend your own Mana Points to get something from inventory, you can get something 1");
         System.out.println("1 - Yes\n (any other number) - No");
 

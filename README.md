@@ -379,6 +379,10 @@ public interface Observer {
 
 ## Product
 
+## Character
+
+``` An interface created for later use as the basis for all classes. ```
+
 ```java
 public interface Character {
     int getHealthPoints();
@@ -397,6 +401,10 @@ public interface Character {
     String getWarClass();
 }
 ```
+
+## Human
+
+``` The abstract class was created in order to implement Basic Methods that will be identical for All classes ```
 
 ```java
 public abstract class Human implements Character {
@@ -432,7 +440,12 @@ public abstract class Human implements Character {
 }
 ```
 
-## ConcreteProduct
+## ConcreteProducts:
+
+### Priest
+
+``` The first game class that is able to heal and give mana in large quantities, ```
+``` But is not able to fight like others ```
 
 ```java
 public class Priest extends Human {
@@ -492,6 +505,7 @@ public class Priest extends Human {
         return damage;
     }
 
+    // This method is giving heal by getting Character Type and giving 45 amount of healing
     public void giveHeal(Character human) {
         if (status) {
             if (Mana > 0) {
@@ -509,6 +523,8 @@ public class Priest extends Human {
             System.out.println(getName() + " is already Dead");
         }
     }
+
+    // This method is giving mana by getting Character Type and giving 45 amount of mana
     public void giveMana(Character human) {
         if (status) {
             if (human.getStatus().equals("Alive")) {
@@ -591,9 +607,8 @@ public class Warrior extends Human {
     }
 
     @Override
-    public void giveHeal(Character warrior) {
-        int heal = 0;
-        warrior.setHealthPoints(warrior.getHealthPoints() + heal);
+    public void giveHeal(Character human) {
+        human.setHealthPoints(human.getHealthPoints() + 5);
     }
 
     @Override
@@ -670,13 +685,13 @@ public class Wizard extends Human {
     }
 
     @Override
-    public void giveHeal(Character warrior) {
-        setHealthPoints(getHealthPoints());
+    public void giveHeal(Character human) {
+        human.setHealthPoints(getHealthPoints() + 10);
     }
 
     @Override
     public void giveMana(Character human) {
-        setMana(0);
+        human.setMana(human.getMana() + 5);
     }
 
     @Override
@@ -692,12 +707,17 @@ public class Wizard extends Human {
 
 ## Creator
 
+``` Interface of Character creator, it should get Characters name ```
+
 ```java
 public interface CharacterCreator {
     Character create(String name);
 }
 ```
-## ConcreteCreators
+## ConcreteCreators:
+
+### PriestCreator 
+
 ```java
 public class PriestCreator implements CharacterCreator {
     @Override
@@ -706,6 +726,9 @@ public class PriestCreator implements CharacterCreator {
     }
 }
 ```
+
+### WarriorCreator 
+
 ```java
 public class WarriorCreator implements CharacterCreator {
     @Override
@@ -714,6 +737,9 @@ public class WarriorCreator implements CharacterCreator {
     }
 }
 ```
+
+### WizardCreator 
+
 ```java
 public class WizardCreator implements CharacterCreator {
     @Override

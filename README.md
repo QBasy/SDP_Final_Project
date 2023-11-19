@@ -810,6 +810,8 @@ public class MagicStickDecorator extends CharacterDecorator{
 }
 ```
 
+## WeaponDecorator
+
 ```java
 public class WeaponDecorator extends CharacterDecorator {
     private Human Decorated;
@@ -832,11 +834,17 @@ public class WeaponDecorator extends CharacterDecorator {
 
 # Strategy
 
+``` Strategy Interface of AttackType's ```
+
 ```java
 public interface AttackType {
     void attack(Character allie, Character enemy);
 }
 ```
+
+## Attack
+
+``` Used to initialize the Type of attack Itself ```
 
 ```java
 public class Attack {
@@ -850,6 +858,10 @@ public class Attack {
     }
 }
 ```
+
+## MageAttack
+
+``` Strategy for Magic AttackType, Implements the type of attack ```
 
 ```java
 public class MageAttack implements AttackType {
@@ -873,6 +885,9 @@ public class MageAttack implements AttackType {
     }
 }
 ```
+## PhysAttack
+
+``` Strategy for Physical Attack, Implements the type of attack```
 
 ```java
 public class PhysAttack implements AttackType {
@@ -897,56 +912,51 @@ public class PhysAttack implements AttackType {
 
 # Adapter
 
-```java
-public class PriestAttackAdapter extends Priest implements Character {
-    private AttackType attackType;
+``` In this project Adapter Pattern used to adapt Attack types from Strategy Pattern to Characters ```
 
-    public PriestAttackAdapter(String name) {
-        super(name);
-    }
-    public void setAttackType(AttackType attackType) {
-        this.attackType = attackType;
-    }
-    public void attack(Character allie, Character enemy) {
-        attackType.attack(allie, enemy);
-    }
-}
-```
+## Adapter for Warrior
 
----
+``` Here is Adapter Pattern for Warrior ```
 
 ```java
 public class WarriorAttackAdapter extends Warrior implements Character {
-    private AttackType attackType;
+    private AttackType attackType; // AttackType (Mage or Physical)
 
+    // Constructor
     public WarriorAttackAdapter(String name) {
         super(name);
     }
+    // Setting AttackType
     public void setAttackType(AttackType attackType) {
         this.attackType = attackType;
     }
+    // Attack function itself (using Strategy)
     public void attack(Character allie, Character enemy) {
         attackType.attack(allie, enemy);
     }
 }
 ```
+
+## Adapter for Wizard
+
+``` Here is Adapter Pattern for Wizard ```
 
 ```java
 public class WizardAttackAdapter extends Wizard implements Character {
-    private AttackType attackType;
+    private AttackType attackType; // AttackType (Mage or Physical)
 
+    // Constructor
     public WizardAttackAdapter(String name) {
         super(name);
     }
+    // Setting AttackType
     public void setAttackType(AttackType attackType) {
         this.attackType = attackType;
     }
+    // Attack function itself (using Strategy)
     public void attack(Character allie, Character enemy) {
         attackType.attack(allie, enemy);
     }
 }
-```
-
-```java
 ```
 

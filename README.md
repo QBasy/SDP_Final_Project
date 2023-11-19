@@ -6,8 +6,8 @@
 
 ---
 
-**
-Project Overview:   
+
+**Project Overview:   
  
 1) Our project is a representative of RPG game with 3 in-game classes, amount of which can be extended in the future. Characters can have armor and weapons. Attacks can deal two types of damage: physical and magic.   
  
@@ -19,10 +19,9 @@ Project Overview:
  
 One of our primary objectives is to successfully implement various game mechanics, including character classes, armor, weapons, and a dual-damage system (physical and magic).  
   
-Learning and Skill Development:   
+**Learning and Skill Development:**   
  
-Beyond the immediate goal of creating a game, we see this project as an opportunity for personal and professional growth. We aim to enhance our skills in teamwork, problem-solving, and game development, ultimately contributing to our overall academic development.
-**
+Beyond the immediate goal of creating a game, we see this project as an opportunity for personal and professional growth. We aim to enhance our skills in teamwork, problem-solving, and game development, ultimately contributing to our overall academic development.**
 
 ---
 

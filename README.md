@@ -744,6 +744,10 @@ public class WizardCreator implements CharacterCreator {
 
 # Decorator
 
+## CharacterDecorator
+
+``` An abstract class created to adapt Character interface to a Decorator without changing interface itself ```
+ 
 ```java
 public abstract class CharacterDecorator implements Character {
     private Character decoratedCharacter;
@@ -797,6 +801,10 @@ public abstract class CharacterDecorator implements Character {
 }
 ```
 
+## ArmorDecorator
+
+``` This Decorator giving Armor to chosen Charecter ```
+
 ```java
 public class ArmorDecorator extends CharacterDecorator {
     private Human Decorated;
@@ -812,6 +820,10 @@ public class ArmorDecorator extends CharacterDecorator {
     }
 }
 ```
+
+## MagicStickDecorator
+
+``` This Decorator giving Magic Stick to chosen Charecter ```
 
 ```java
 public class MagicStickDecorator extends CharacterDecorator{
@@ -831,6 +843,8 @@ public class MagicStickDecorator extends CharacterDecorator{
 ```
 
 ## WeaponDecorator
+
+``` This Decorator giving Katana to chosen Charecter ```
 
 ```java
 public class WeaponDecorator extends CharacterDecorator {

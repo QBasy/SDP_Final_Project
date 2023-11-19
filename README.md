@@ -14,34 +14,43 @@
 ```java
 public class Main {
     public static void main(String[] args) {
-        Observer observer = ObserverClass.getInstance();
-        Scanner in = new Scanner(System.in);
+        Observer observer = ObserverClass.getInstance(); // Creating Observer by using Singleton's getInstance(), For the notifications in future during the battle.
 
-        List<Character> allies = new ArrayList<>();
-        List<Character> enemy = new ArrayList<>();
+        Scanner in = new Scanner(System.in); // Creating Scanner Object for the future elections
 
-        enemy.add(createEnemy());
-        enemy.add(createEnemy());
+        List<Character> allies = new ArrayList<>(); // Dynamic Array to contain Players Characters
+        List<Character> enemy = new ArrayList<>(); // Dynamic Array to contain Players Enemy 
 
-        System.out.println("How many Allies you want to create?");
-        int n;
-        while (true) {
+        enemy.add(createEnemy()); // Creates Warriors as an enemy
+        enemy.add(createEnemy()); // Creates Warriors as an enemy
+
+        int n; // A variable initialized for future elections
+
+        System.out.println("How many Allies you want to create? (Not more than 3)");
+
+        while (true) { // Infinite loop, so that the user does not choose the wrong number
             n = in.nextInt();
             if (n > 3) {
                 System.out.println("Allies can't be more than 3");
+            } else if (n < 1) {
+                System.out.println("Allies can't be less than 1");
             } else {
                 break;
             }
         }
 
         System.out.println("Who you want to create?");
-        for (int i = 0; i < n; i++) {
+
+        for (int i = 0; i < n; i++) {         // This loop used to create Players Team
             System.out.println("1 - Warrior\n2 - Wizard\n3 - Priest");
             allies.add(createCharacter());
         }
+8
         System.out.println("You can spend your own Mana Points to get something from inventory, you can get something 1");
         System.out.println("1 - Yes\n (any other number) - No");
-        if (in.nextInt() == 1) {
+
+        // Player can Choose one of the Special Items, or decline the deal.
+        if (in.nextInt() == 1) { 
             System.out.println("Ok");
             System.out.println("For who?");
             for (int i = 0; i < allies.size(); i++) {
@@ -52,7 +61,14 @@ public class Main {
             System.out.println("Ok");
         }
 
+        // An infinite loop, also this part of the code can be called the battle itself
         while (true) {
+            // Checks if allies or enemies are all dead, and print result.
+            // If both teams in a moment are Dead, it will be Draw
+            if (allies.isEmpty() && enemy.isEmpty()) {
+                System.out.println("Draw!");
+                break;
+            }
             if (allies.isEmpty()) {
                 System.out.println("You Lost!");
                 break;
@@ -61,10 +77,12 @@ public class Main {
                 System.out.println("You Won!");
                 break;
             }
+
             System.out.println("Make your move");
-            move(allies, enemy);
-            enemyMove(enemy, allies);
-            observer.update(allies,enemy);
+
+            move(allies, enemy); // Players Move
+            enemyMove(enemy, allies); // AI move
+            observer.update(allies,enemy); // Observer Writes notifications, also removes dead Characters.
         }
     }
 
@@ -85,6 +103,7 @@ public static void inventory(List<Character> human, int index) {
         System.out.println("Which One?");
         System.out.println("1 - Armor, 2 - Magic Wand, 3 - Katana");
 
+        // (Switch - Case) Choice tp choose an Item from Decorator.
         switch (in.nextInt()) {
             case 1:
                 Character Armored = new ArmorDecorator(human.get(index));
@@ -112,12 +131,13 @@ public static void inventory(List<Character> human, int index) {
 
 ``` Simple AI for Enemies of Player ```
 ``` using Random numbers to choose random actions for enemy team. ```
+``` Also uses Strategy and Adapter Patterns to give damage ``` 
 
 ```java
 public static void enemyMove(List<Character> enemy, List<Character> allies) {
         System.out.println("Now wait for Enemy move");
         for (Character character : enemy) {
-            int gettingPerson = (int) ((Math.random() * (allies.size() - 1)));
+            int gettingPerson = (int) ((Math.random() * (allies.size() - 1))); // Getting random Player Character.
             int move = (int) ((Math.random() * (5 - 1)));
             switch (move) {
                 case 1:
@@ -128,12 +148,12 @@ public static void enemyMove(List<Character> enemy, List<Character> allies) {
                     break;
                 case 2:
                     Attack magicAttack = new Attack();
-                    magicAttack.setAttackType(new MageAttack());
+                    magicAttack.setAttackType(new MageAttack()); 
                     magicAttack.attack(character, allies.get(gettingPerson));
                     System.out.println();
                     break;
                 case 3:
-                    character.giveHeal(enemy.get(gettingPerson));
+                    character.giveHeal(enemy.get((int) ((Math.random() * (enemy.size() - 1)))));
                     System.out.println();
                     break;
             }
@@ -145,6 +165,7 @@ public static void enemyMove(List<Character> enemy, List<Character> allies) {
 
 ``` This function accepts Two Dynamic Arrays, the first is the player's heroes, the second is the opponent. ```
 ``` Created for the player to accept the actions of the characters. ```
+``` Also uses Strategy and Adapter Patterns to give damage ``` 
 
 ```java
 public static void move(List<Character> allies, List<Character> enemies) {
@@ -240,6 +261,7 @@ public static void move(List<Character> allies, List<Character> enemies) {
 ## createCharacter()
 
 ``` This function using Factory Pattern by using simple (switch - case) and return chosen character ```
+
 ```java
 public static Character createCharacter() {
         Scanner in = new Scanner(System.in);
@@ -277,6 +299,8 @@ public static Character createEnemy() {
 
 # Signleton
 
+``` Here the pattern of a Singleton is used for a single Observer call ```
+
 ```java
 public class ObserverClass implements Observer {
     private static ObserverClass instance;
@@ -299,11 +323,15 @@ public class ObserverClass implements Observer {
 
 # Observer
 
+``` This pattern is used during the battle after each full turn of the loop in order to display information about each of the Characters ```
+``` Also used to remove Dead Characters ```
+
 ```java
 public class ObserverClass implements Observer {
 
     /*Singleton*/
 
+    // Realisation of Interface and the main function of Observer
     @Override
     public void update(List<Character> allies, List<Character> enemy) {
         for (Character human : allies) {
@@ -320,9 +348,11 @@ public class ObserverClass implements Observer {
                 System.out.println("Mana = " + human.getMana() + "\n");
             }
         }
-        checkForDead(allies, enemy);
+        removeDead(allies, enemy);
     }
-    public void checkForDead(List<Character> allies, List<Character> enemies) {
+
+    // This function remove dead characters in both teams, if there are any.
+    private void removeDead(List<Character> allies, List<Character> enemies) {
         for (int i = 0; i < allies.size(); i++) {
             if (allies.get(i).getStatus().equals("Dead")) {
                 allies.remove(i);
@@ -336,6 +366,7 @@ public class ObserverClass implements Observer {
     }
 }
 
+``` Interface of Observer itself ```
 public interface Observer {
     void update(List<Character> allies, List<Character> enemy);
 }

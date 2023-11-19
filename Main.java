@@ -79,6 +79,7 @@ public class Main {
         System.out.println("Which One?");
         System.out.println("1 - Armor, 2 - Magic Wand, 3 - Katana");
 
+
         switch (in.nextInt()) {
             case 1:
                 Character Armored = new ArmorDecorator(human.get(index));

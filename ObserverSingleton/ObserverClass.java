@@ -33,7 +33,7 @@ public class ObserverClass implements Observer {
         }
         removeDead(allies, enemy);
     }
-    public void removeDead(List<Character> allies, List<Character> enemies) {
+    private void removeDead(List<Character> allies, List<Character> enemies) {
         for (int i = 0; i < allies.size(); i++) {
             if (allies.get(i).getStatus().equals("Dead")) {
                 allies.remove(i);

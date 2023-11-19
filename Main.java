@@ -29,6 +29,8 @@ public class Main {
             n = in.nextInt();
             if (n > 3) {
                 System.out.println("Allies can't be more than 3");
+            } else if (n < 1){
+                System.out.println("Allies can't be less than 1");
             } else {
                 break;
             }
@@ -53,6 +55,10 @@ public class Main {
         }
 
         while (true) {
+            if (allies.isEmpty() && enemy.isEmpty()) {
+                System.out.println("Draw!");
+                break;
+            }
             if (allies.isEmpty()) {
                 System.out.println("You Lost!");
                 break;
@@ -95,10 +101,10 @@ public class Main {
         }
     }
     public static void enemyMove(List<Character> enemy, List<Character> allies) {
-        System.out.println("Now wait for Enemy move");
+        System.out.println("Now Enemy move");
         for (Character character : enemy) {
             int gettingPerson = (int) ((Math.random() * (allies.size() - 1)));
-            int move = (int) ((Math.random() * (5 - 1)));
+            int move = (int) ((Math.random() * (4 - 1)));
             switch (move) {
                 case 1:
                     Attack physAttack = new Attack();
@@ -116,10 +122,7 @@ public class Main {
                     character.giveHeal(enemy.get(gettingPerson));
                     System.out.println();
                     break;
-                case 4:
-                    character.giveMana(enemy.get(gettingPerson));
-                    System.out.println();
-                    break;
+
             }
         }
     }

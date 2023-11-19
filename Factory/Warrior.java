@@ -60,7 +60,7 @@ public class Warrior extends Human {
 
     @Override
     public void giveHeal(Character warrior) {
-        int heal = 0;
+        int heal = 5;
         warrior.setHealthPoints(warrior.getHealthPoints() + heal);
     }
 

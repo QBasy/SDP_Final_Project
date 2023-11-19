@@ -7,6 +7,10 @@
 ---
 # Main
 
+## main(String[] args)
+``` The main function ```
+``` It contains basic simple logic for the game ```
+
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -71,7 +75,8 @@ public class Main {
 
 ## inventory(List<Character> human, int index)
 
-``` This function uses the decorator pattern so that the player can select one special item.  ```
+``` This function uses the decorator pattern, ```
+``` so that the player can select one special item. ```
 
 ```java
 public static void inventory(List<Character> human, int index) {
@@ -105,7 +110,8 @@ public static void inventory(List<Character> human, int index) {
 
 ## enemyMove(List<Character> enemy, List<Character> allies)
 
-``` Simple AI for Enemies of Player using Random numbers to choose random actions for enemy team ```
+``` Simple AI for Enemies of Player ```
+``` using Random numbers to choose random actions for enemy team. ```
 
 ```java
 public static void enemyMove(List<Character> enemy, List<Character> allies) {
@@ -137,7 +143,8 @@ public static void enemyMove(List<Character> enemy, List<Character> allies) {
 
 ## move(List<Character> allies, List<Character> enemies)
 
-``` This function accepts Two Dynamic Arrays, the first is the player's heroes, the second is the opponent. Created for the player to accept the actions of the characters.```
+``` This function accepts Two Dynamic Arrays, the first is the player's heroes, the second is the opponent. ```
+``` Created for the player to accept the actions of the characters. ```
 
 ```java
 public static void move(List<Character> allies, List<Character> enemies) {
@@ -232,7 +239,7 @@ public static void move(List<Character> allies, List<Character> enemies) {
 
 ## createCharacter()
 
-``` This function using Factory Pattern by using simple switch - case and return chosen character ```
+``` This function using Factory Pattern by using simple (switch - case) and return chosen character ```
 ```java
 public static Character createCharacter() {
         Scanner in = new Scanner(System.in);
@@ -258,7 +265,7 @@ public static Character createCharacter() {
 
 ## createEnemy()
 
-``` creating Warrior as an enemies ```
+``` creating Warrior as an enemies, also uses Factory pattern```
 
 ```java
 public static Character createEnemy() {
